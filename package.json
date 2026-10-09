@@ -1,0 +1,25 @@
+{
+  "name": "protocol-registration",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Complete protocol registration workflow with mailbox automation, concurrent queues, proxy pools and credential persistence.",
+  "main": "src/app/main.js",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env src/app/main.js",
+    "check": "node --check src/app/main.js && node --check src/app/server.js && node --check src/app/config.js && node --check src/browser/lifecycle/fingerprint-browser.js && node --check src/collector/network/full-network-collector.js && node --check src/registration/runner.js && node --check src/registration/freepp-sidecar-runner.js && node --check src/registration/steps/auth-email-entry.js && node --check src/registration/steps/flowpilot-email-entry.js && node --check src/registration/session-cookies.js && node --check src/session/restore-session.js && node --check src/session/refresh-token-rotation.js && node --check src/phone/openai-phone-bind.js && node --check src/eligibility/trial-eligibility.js && node --check src/eligibility/eligibility-checker.js && node --check src/eligibility/protocol-trial-worker.js && node --check src/eligibility/protocol-trial-checker.js && node --check src/mailbox/cloudflare-temp-email-settings.js && node --check src/mailbox/mail-com-split-settings.js && node --check src/mailbox/mail-com-workflow.js && node --check src/mailbox/mail-code-parser.js && node --check src/mailbox/mailbox-poller.js && node --check src/mailbox/providers/cloudflare-temp-email.js && node --check src/mailbox/providers/icloud-sheex.js && node --check src/mailbox/providers/mail-com-split.js && node --check src/mailbox/providers/share-page-provider.js && node --check src/payment/payment-coordinator.js && node --check src/payment/payment-method-probe-coordinator.js && node --check src/refining/settings.js && node --check src/refining/runtime-store.js && node --check src/refining/pay153-client.js && node --check src/refining/coordinator.js && node --check src/db/account-asset-store.js && node --check src/db/mailbox-store.js && node --check src/db/registration-store.js && node --check src/db/runtime-state-store.js && node --check src/db/legacy-json-migrator.js && node --check tools/migrate_legacy_json_to_postgres.js && node --check tools/migrate_runtime_state_to_postgres.js && node --check tools/restore_legacy_email_sources.js && node --check tools/restore_legacy_mail_com_domains.js && node --check tools/restore_legacy_mail_com_pool_settings.js && node --check tools/mail_com_split_mailbox.js && node --check public/js/app.js",
+    "test": "node --test tests/*.test.js",
+    "setup": "node tools/setup-local.js",
+    "migrate": "node --env-file-if-exists=.env tools/migrate.js",
+    "test:python": "node tools/test-python.js",
+    "test:worker": "node tools/test-python.js --worker"
+  },
+  "engines": {
+    "node": ">=22.9.0"
+  },
+  "dependencies": {
+    "pg": "^8.23.0",
+    "playwright-core": "^1.54.2",
+    "stream-json": "3.7.0",
+    "undici": "6.28.1"
+  }
+}

@@ -1,0 +1,9 @@
+.phone-bind .proxy-workspace,
+section[data-view="phone-bind"] .proxy-workspace {
+  display: grid;
+  gap: 14px;
+}
+section[data-view="phone-bind"] .wide-field { grid-column: 1 / -1; }
+section[data-view="phone-bind"] .phone-country-field { grid-column: 1 / -1; }
+section[data-view="phone-bind"] .cf-grid { gap: 12px; }
+section[data-view="phone-bind"] .button-row { margin-top: 0; }

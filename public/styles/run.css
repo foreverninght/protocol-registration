@@ -1,0 +1,255 @@
+.runtime-controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.advanced-section {
+  margin: 10px 0 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: #fbfcff;
+  overflow: clip;
+}
+.advanced-section > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  cursor: pointer;
+  list-style-position: inside;
+  user-select: none;
+}
+.advanced-section > summary small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+.advanced-section[open] > summary { border-bottom: 1px solid var(--line); }
+.advanced-section-body { padding: 12px; }
+.refining-toggle-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 14px 0;
+}
+.inline-settings-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  align-items: center;
+}
+.inline-settings-row .inline-check { margin: 0; }
+
+.run-category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 10px;
+}
+.run-category-tabs button,
+.mail-workflow-tabs button {
+  background: #e5eaf3;
+  color: #344054;
+  padding: 9px 12px;
+  border-radius: 10px;
+}
+.run-category-tabs button.active,
+.mail-workflow-tabs button.active {
+  background: var(--accent);
+  color: #fff;
+}
+.workflow-board {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+.workflow-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  align-items: center;
+  margin: 12px 0 16px;
+}
+.workflow-search {
+  flex: 1 1 280px;
+  min-width: 240px;
+}
+.mail-workflow-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 4px;
+  border-bottom: 1px solid var(--line);
+}
+.mail-workflow-tabs button { border-radius: 8px 8px 0 0; }
+.mail-password-tabs {
+  padding: 0;
+  border-bottom: 0;
+}
+.mail-password-tabs button {
+  border-radius: 8px;
+  padding-block: 7px;
+}
+.run-mail-groups { display: grid; gap: 16px; }
+.run-mail-group { display: grid; gap: 10px; }
+.run-mail-heading {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+}
+.run-mail-heading h3,
+.run-mail-heading h4 { margin: 0; }
+.run-mail-heading button {
+  padding: 9px 12px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+.run-mail-group .item { grid-template-columns: minmax(0, 1fr); }
+.cf-run-box {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) auto auto;
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 16px;
+  padding: 14px;
+  border-radius: var(--radius-lg);
+  background: var(--soft);
+}
+.cf-run-box button { white-space: nowrap; background: var(--accent); }
+
+.mail-com-management {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: #fff;
+}
+.mail-com-management .inline-status { margin-top: 0; }
+.split-account-body { display: grid; gap: 8px; }
+.split-account {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--soft);
+  padding: 12px 13px;
+  display: grid;
+  gap: 8px;
+}
+.split-account.is-collapsed { padding-block: 9px; }
+.split-account.is-collapsed .split-account-body { display: none; }
+.split-account-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: start;
+}
+.split-account strong {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.split-account code { display: block; margin-top: 4px; }
+.split-account-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+.split-alias-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(160px, .55fr) auto;
+  gap: 8px;
+}
+.split-alias-form button {
+  white-space: nowrap;
+  padding-inline: 14px;
+}
+.split-alias-list { display: grid; gap: 8px; }
+.split-alias-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+}
+.domain-picker {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+}
+.domain-picker button {
+  white-space: nowrap;
+  padding-inline: 18px;
+}
+.mail-com-domain-table {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.mail-com-domain-table-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: baseline;
+}
+.mail-com-domain-table > input[type="search"] { max-width: 360px; }
+.mail-com-domain-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.mail-com-domain-group {
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+.mail-com-domain-group-title { display: block; margin-bottom: 8px; font-weight: 700; }
+.mail-com-domain-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+  gap: 6px 12px;
+  max-height: 260px;
+  overflow: auto;
+}
+.mail-com-domain-item {
+  display: block;
+  overflow: hidden;
+  padding: 4px 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mail-com-active-accounts { display: grid; gap: 8px; }
+.mail-com-account-section-heading,
+.mail-com-account-manager > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.mail-com-account-section-heading { padding: 0 4px; }
+.mail-com-account-manager {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--soft) 72%, transparent);
+  overflow: clip;
+}
+.mail-com-account-manager > summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  list-style-position: inside;
+  user-select: none;
+}
+.mail-com-account-manager[open] > summary { border-bottom: 1px solid var(--line); }
+.mail-com-managed-account-list { padding: 10px; }
+.split-account-managed { padding-block: 9px; }

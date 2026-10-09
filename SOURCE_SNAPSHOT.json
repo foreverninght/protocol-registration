@@ -1,0 +1,59 @@
+{
+  "description": "Historical input archive hashes retained for provenance only; the release contains only the FreePP registration backend and the shared post-registration worker. No production runtime data included.",
+  "inputs": [
+    {
+      "sha256": "2cae8aeed04c11c7bb8a360cd84f5beeeaf3a8048ce9b0bcdde589a751693b09",
+      "archive": "freepp-registration-source.tar.gz"
+    },
+    {
+      "sha256": "3ca3a0a348f51721491e689acf2d39e2e8754006d6fcd76a0ca7dc3d446648f4",
+      "archive": "freepp-har-registration-source.tar.gz"
+    },
+    {
+      "sha256": "85426f42d32632b203fe1ef078d7384f26017d69c65a53dd2eeed2e0d5665029",
+      "archive": "registration-postprocess-worker-source.tar.gz"
+    },
+    {
+      "sha256": "b96ad89cb6e61f350e900a97e8df3f30a38ae11a8c71dc99bfcaa8a0ee39df20",
+      "archive": "signlist-registration-support.tar.gz"
+    }
+  ],
+  "registrationServiceSource": "Source-only review snapshot, with existing trial-worker fixes; SQL and docs provided by the support archive.",
+  "localChanges": [
+    "Fixed registration-only runtime composition while retaining complete registration automation and UI.",
+    "Retained only the FreePP registration backend and shared post-registration worker dependencies; moved the historical HAR backend outside the project with a rollback copy.",
+    "Changed backend, Python and Node defaults to local paths.",
+    "Kept explicit session proxy for OAuth token exchange in main FreePP backend.",
+    "Removed obsolete optional production probe hook imports and excluded standalone diagnostic probes.",
+    "Added local database setup, migration bookkeeping and offline dependency/profile tests.",
+    "Defaulted registration to FreePP; rejected retired HAR identifiers in task APIs and hid the single implementation selector.",
+    "Audited and repaired queue lease ownership/generation fencing, shutdown admission and mailbox repair eligibility.",
+    "Preserved partial credentials across TOTP, final-token and email-change failures; restored automatic new-mailbox OTP recovery.",
+    "Added Host/Origin request boundaries, stdin-only default sidecar configuration and shared event/evidence redaction.",
+    "Removed unused browser-only installation dependencies and updated vulnerable HTTP/streaming dependencies without removing migration capabilities.",
+    "Included required static phone-country data and applicable license/notice files in source releases.",
+    "Added real PostgreSQL batch/race/recovery tests, real Node/Python IPC regressions, browser functional checks and clean-install verification.",
+    "Removed inherited personal destination examples and implicit service defaults; retained explicit configuration support and added reserved-example/privacy regression checks."
+  ],
+  "licenseStatus": "Public-source research project; no additional project-wide license declared. Existing component terms and attribution remain applicable; see THIRD_PARTY.md.",
+  "thirdPartyModifications": [
+    {
+      "path": "vendor/freepp/backend/reg/chatgpt_core.py",
+      "sourceInput": "freepp-registration-source.tar.gz",
+      "changes": [
+        "Reuse explicit registration proxy/session for OAuth token exchange.",
+        "Preserve password whitespace.",
+        "Require a real password flow when validating an existing password.",
+        "Support a supplied MFA handler during password/email-OTP login."
+      ],
+      "newlineStyle": "Original CRLF retained."
+    },
+    {
+      "path": "python/rebind_worker",
+      "sourceInput": "registration-postprocess-worker-source.tar.gz",
+      "changes": [
+        "Copied shared runtime closure; no functional source modifications."
+      ]
+    }
+  ]
+}

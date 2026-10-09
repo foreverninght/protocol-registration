@@ -1,0 +1,409 @@
+/* 2026-08-22: global console layout pass */
+:root {
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --control-h: 40px;
+}
+
+.app-shell {
+  grid-template-columns: 220px minmax(0, 1fr);
+}
+
+.sidebar {
+  padding: 22px 18px;
+}
+
+.brand {
+  margin-bottom: 24px;
+}
+
+.nav-tabs {
+  gap: 4px;
+}
+
+.nav-tabs button {
+  padding: 10px 12px;
+  border-radius: 10px;
+}
+
+.sidebar-note {
+  left: 18px;
+  right: 18px;
+  bottom: 20px;
+  font-size: 12px;
+}
+
+.workspace {
+  padding: 20px 22px 34px;
+}
+
+.topbar {
+  margin-bottom: 14px;
+}
+
+.topbar h1 {
+  font-size: clamp(24px, 2.2vw, 34px);
+  letter-spacing: 0;
+}
+
+.status-strip,
+.refining-status-strip {
+  border-radius: var(--radius-lg);
+  margin-bottom: 14px;
+}
+
+.status-strip div,
+.refining-status-strip div {
+  padding: 12px 14px;
+}
+
+.status-strip strong,
+.refining-status-strip strong {
+  font-size: 16px;
+}
+
+.panel {
+  border-radius: var(--radius-lg);
+  padding: 18px;
+}
+
+.panel.compact,
+.proxy-workspace,
+.refining-config-panel,
+.refining-queue-panel {
+  padding: 18px;
+}
+
+.section-heading {
+  margin-bottom: 14px;
+  align-items: center;
+}
+
+.section-heading .eyebrow {
+  margin-bottom: 3px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+h3 {
+  margin-bottom: 10px;
+}
+
+label {
+  gap: 6px;
+  font-size: 12px;
+}
+
+input,
+textarea,
+select {
+  min-height: var(--control-h);
+  border-radius: var(--radius-md);
+  padding: 9px 11px;
+}
+
+button,
+.link-button {
+  min-height: var(--control-h);
+  border-radius: var(--radius-md);
+  padding: 9px 13px;
+}
+
+.inline-status {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.button-row {
+  margin: 8px 0;
+}
+
+.runtime-controls {
+  grid-template-columns: repeat(4, minmax(180px, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.advanced-section {
+  margin: 10px 0 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: #fbfcff;
+  overflow: clip;
+}
+
+.advanced-section > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  cursor: pointer;
+  user-select: none;
+  color: var(--ink);
+  font-weight: 900;
+  list-style-position: inside;
+}
+
+.advanced-section > summary small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.advanced-section[open] > summary {
+  border-bottom: 1px solid var(--line);
+}
+
+.advanced-section-body {
+  padding: 12px;
+}
+
+.compact-form-grid,
+.proxy-workspace .cf-grid,
+.refining-form-grid {
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 10px;
+}
+
+.inline-settings-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  align-items: center;
+}
+
+.inline-settings-row .inline-check {
+  margin: 0;
+}
+
+.workflow-board {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+
+.run-category-tabs,
+.mail-category-tabs {
+  margin: 8px 0 10px;
+}
+
+.mail-workflow-tabs {
+  gap: 6px;
+  padding-top: 0;
+  margin-bottom: 8px;
+}
+
+.mail-category-tabs button,
+.run-category-tabs button,
+.mail-workflow-tabs button {
+  min-height: 34px;
+  padding: 7px 11px;
+  border-radius: 9px;
+}
+
+.mail-password-tabs {
+  padding-left: 0;
+  margin-bottom: 10px;
+}
+
+.mail-password-tabs button {
+  min-height: 32px;
+  padding: 6px 10px;
+}
+
+.run-mail-groups {
+  gap: 10px;
+}
+
+.run-mail-heading {
+  min-height: 34px;
+}
+
+.cf-run-box,
+.mail-com-management {
+  border-radius: var(--radius-md);
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.task-list,
+.mini-list,
+.split-account-list,
+.refining-job-list {
+  gap: 6px;
+}
+
+.item {
+  border-radius: var(--radius-md);
+  padding: 9px 11px;
+}
+
+.email-status-card {
+  border-radius: 14px;
+}
+
+.email-status-row {
+  grid-template-columns: 24px minmax(250px, 1.15fr) minmax(96px, .32fr) minmax(180px, .7fr) minmax(360px, .9fr);
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  min-height: 72px;
+}
+
+.email-status-identity strong {
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.email-status-identity .mailbox-url,
+.email-status-state code {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.status-badge {
+  padding: 3px 8px;
+  font-size: 12px;
+}
+
+.email-status-detail {
+  -webkit-line-clamp: 1;
+  font-size: 13px;
+}
+
+.email-status-events {
+  height: auto;
+  max-height: 180px;
+  margin-top: 6px;
+  padding: 10px 14px 10px 30px;
+  border-radius: var(--radius-md);
+}
+
+.item-actions {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding: 2px 0;
+  scrollbar-width: thin;
+}
+
+.item-actions button,
+.item-actions .inline-status {
+  flex: 0 0 auto;
+}
+
+.item-actions button {
+  min-height: 34px;
+  padding: 7px 10px;
+  border-radius: 9px;
+  white-space: nowrap;
+}
+
+.inline-phone-input,
+.inline-code-input {
+  flex: 0 0 150px;
+  min-height: 34px;
+  padding: 7px 9px;
+}
+
+.refining-layout {
+  grid-template-columns: minmax(0, 1fr) minmax(320px, .48fr);
+  gap: 14px;
+}
+
+.refining-fieldset {
+  padding: 12px 0;
+}
+
+.refining-fieldset legend {
+  padding-bottom: 8px;
+}
+
+.refining-toggle-grid {
+  gap: 10px 16px;
+  margin: 10px 0;
+}
+
+#mailComSplitFeedback,
+#paymentSettingsFeedback,
+#paymentMethodProbeFeedback,
+#phoneBindSettingsFeedback,
+#refiningFeedback,
+.workspace-feedback {
+  max-height: 46px;
+  overflow: auto;
+}
+
+@media (max-width: 1280px) {
+  .email-status-row {
+    grid-template-columns: 24px minmax(220px, 1fr) minmax(92px, .3fr) minmax(160px, .65fr);
+  }
+
+  .email-status-row .item-actions {
+    grid-column: 2 / -1;
+  }
+}
+
+@media (max-width: 980px) {
+  .runtime-controls,
+  .compact-form-grid,
+  .proxy-workspace .cf-grid,
+  .refining-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .item-actions {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+}
+
+
+/* Inventory rows share the same scan-first rule as run rows. */
+.inventory-item code,
+.mini-list .item code {
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.inventory-item > div:first-child {
+  min-width: 0;
+}
+
+.inventory-item > div:first-child strong {
+  min-width: 0;
+}
+
+
+.refining-queue-panel {
+  max-height: calc(100vh - 168px);
+  overflow: auto;
+}
+
+#refiningBatchList {
+  max-height: 320px;
+  overflow: auto;
+}
+
+.proxy-workspace {
+  max-width: none;
+}
+
+.copy-fallback-panel {
+  border-radius: var(--radius-lg);
+}
+
+
+@media (min-width: 1281px) {
+  .email-status-row {
+    grid-template-columns: 24px minmax(220px, 1fr) minmax(82px, .25fr) minmax(180px, .55fr) minmax(0, .95fr);
+  }
+}
+

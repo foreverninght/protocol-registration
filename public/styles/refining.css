@@ -1,0 +1,100 @@
+.refining-status-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 18px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+.refining-status-strip div {
+  min-width: 0;
+  padding: 16px 18px;
+  border-right: 1px solid var(--line);
+}
+.refining-status-strip div:last-child { border-right: 0; }
+.refining-status-strip span,
+.refining-status-strip strong { display: block; }
+.refining-status-strip span { color: var(--muted); font-size: 12px; }
+.refining-status-strip strong { margin-top: 5px; font-size: 18px; }
+
+.refining-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(340px, .65fr);
+  gap: 18px;
+  align-items: start;
+}
+.refining-config-panel,
+.refining-queue-panel {
+  max-width: none;
+}
+.refining-fieldset {
+  margin: 0;
+  padding: 18px 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+.refining-fieldset legend {
+  padding: 0 0 12px;
+  color: var(--ink);
+  font-weight: 900;
+}
+.refining-form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.refining-form-grid.two-column { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.refining-form-grid label,
+.refining-fieldset > label {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+.refining-switch-row { margin-top: 12px; }
+.refining-toggle-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 14px 0;
+}
+.refining-actions { margin-top: 4px; }
+.refining-job-list { display: grid; gap: 9px; }
+.refining-job-list > .item,
+#refiningBatchList .item { grid-template-columns: 1fr; }
+.refining-job-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(90px, auto) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.refining-job-row > div { min-width: 0; }
+.refining-job-row strong,
+.refining-job-row code,
+.refining-job-state span { display: block; }
+.refining-job-row > div:first-child strong { overflow-wrap: anywhere; }
+.refining-job-row code,
+.refining-job-state span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  word-break: break-word;
+}
+.refining-job-row[data-status="running"],
+.refining-job-row[data-status="queued"] { color: var(--accent); }
+.refining-job-row[data-status="error"],
+.refining-job-row[data-status="remote_unknown"],
+.refining-job-row[data-status="remote_lost"] { color: var(--danger); }
+.refining-history-heading { margin-top: 28px; }
+.refining-queue-panel {
+  max-height: calc(100vh - 168px);
+  overflow: auto;
+}
+#refiningBatchList {
+  max-height: 320px;
+  overflow: auto;
+}

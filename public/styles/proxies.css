@@ -1,0 +1,99 @@
+.proxy-workspace { max-width: none; }
+.pool-grid {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+.pool {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "title tools"
+    "paste paste"
+    "action feedback"
+    "list list";
+  gap: 12px 14px;
+  align-items: start;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-lg);
+  background: #fff;
+}
+.pool[data-empty="true"] {
+  border-left-color: #94a3b8;
+  background: #fbfcff;
+}
+.pool h3 {
+  grid-area: title;
+  align-self: center;
+  margin: 0;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 900;
+}
+.pool-tools {
+  grid-area: tools;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+.pool-tools select,
+.pool-tools input {
+  min-height: 40px;
+  min-width: 160px;
+}
+.pool-tools button {
+  min-height: 40px;
+  padding: 0 11px;
+  white-space: nowrap;
+}
+.pool textarea {
+  grid-area: paste;
+  width: 100%;
+  min-height: 128px;
+  height: 128px;
+  resize: vertical;
+  font-size: 13px;
+}
+.pool .import-proxies {
+  grid-area: action;
+  width: 156px;
+  min-height: 44px;
+  margin: 0;
+  padding: 0 14px;
+  justify-self: start;
+  white-space: nowrap;
+}
+.pool .proxy-feedback {
+  grid-area: feedback;
+  min-height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: var(--muted);
+  background: transparent;
+  font-size: 12px;
+  line-height: 1.35;
+  align-self: center;
+  justify-self: end;
+}
+.pool .mini-list {
+  grid-area: list;
+}
+.pool .mini-list .item {
+  min-height: 0;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+}
+.pool .mini-list .item strong { font-size: 13px; }
+.pool .mini-list .item code {
+  display: inline;
+  margin: 0 0 0 8px;
+  font-size: 11px;
+}

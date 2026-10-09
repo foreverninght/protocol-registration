@@ -1,0 +1,8 @@
+.payment .proxy-workspace,
+section[data-view="payment"] .proxy-workspace {
+  display: grid;
+  gap: 14px;
+}
+section[data-view="payment"] .wide-field { grid-column: 1 / -1; }
+section[data-view="payment"] .cf-grid { gap: 12px; }
+section[data-view="payment"] .button-row { margin-top: 0; }

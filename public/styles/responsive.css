@@ -1,0 +1,113 @@
+.email-status-row .item-actions {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding: 2px 0;
+  scrollbar-width: thin;
+}
+.email-status-row .item-actions button,
+.email-status-row .item-actions .inline-status { flex: 0 0 auto; }
+
+@media (max-width: 1280px) {
+  .email-status-row {
+    grid-template-columns: 24px minmax(220px, 1fr) minmax(92px, .3fr) minmax(160px, .65fr);
+  }
+  .email-status-row .item-actions { grid-column: 2 / -1; }
+}
+
+@media (max-width: 980px) {
+  .app-shell {
+    display: block;
+    min-width: 0;
+  }
+  .sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+    padding: 16px;
+  }
+  .brand { margin-bottom: 14px; }
+  .nav-tabs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+  .nav-tabs button {
+    min-width: 0;
+    text-align: center;
+  }
+  .sidebar-note { display: none; }
+  .workspace {
+    width: 100%;
+    min-width: 0;
+    padding: 16px;
+  }
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .topbar h1 { font-size: 28px; }
+  .topbar > * { max-width: 100%; }
+  .main-grid,
+  .primary-column,
+  .side-column,
+  .panel,
+  .advanced-section,
+  .advanced-section-body,
+  .workflow-board,
+  .run-mail-groups,
+  .run-mail-group,
+  .task-list,
+  .mail-com-management,
+  .refining-layout,
+  .refining-config-panel,
+  .refining-queue-panel,
+  .cf-grid,
+  .runtime-controls {
+    width: 100%;
+    min-width: 0;
+  }
+  .main-grid,
+  .runtime-controls,
+  .compact-form-grid,
+  .cf-grid,
+  .refining-layout,
+  .refining-form-grid,
+  .refining-form-grid.two-column,
+  .email-status-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .email-status-row .item-actions { grid-column: auto; }
+  .run-mail-heading { flex-wrap: wrap; }
+  .cf-run-box { grid-template-columns: minmax(0, 1fr); }
+  .pool {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "title"
+      "tools"
+      "paste"
+      "action"
+      "feedback"
+      "list";
+  }
+  .pool .proxy-feedback {
+    justify-self: start;
+    min-height: 0;
+  }
+  .pool-tools { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .pool textarea,
+  .pool .import-proxies { width: 100%; }
+  .pool .import-proxies { min-height: 44px; }
+  .mail-com-domain-groups { grid-template-columns: 1fr; }
+  .mail-com-domain-list { grid-template-columns: repeat(auto-fill, minmax(128px, 1fr)); }
+  .refining-status-strip,
+  .status-strip { grid-template-columns: 1fr; }
+  .status-strip div,
+  .refining-status-strip div {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .status-strip div:last-child,
+  .refining-status-strip div:last-child { border-bottom: 0; }
+  .item-actions { flex-wrap: wrap; overflow-x: visible; }
+}
