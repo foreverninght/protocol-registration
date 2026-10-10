@@ -33,7 +33,8 @@
     "Removed unused browser-only installation dependencies and updated vulnerable HTTP/streaming dependencies without removing migration capabilities.",
     "Included required static phone-country data and applicable license/notice files in source releases.",
     "Added real PostgreSQL batch/race/recovery tests, real Node/Python IPC regressions, browser functional checks and clean-install verification.",
-    "Removed inherited personal destination examples and implicit service defaults; retained explicit configuration support and added reserved-example/privacy regression checks."
+    "Removed inherited personal destination examples and implicit service defaults; retained explicit configuration support and added reserved-example/privacy regression checks.",
+    "Retry a cached-session qualification HTTP 401 through one password/TOTP login, and return access/session tokens captured after the probe finishes refreshing its session."
   ],
   "licenseStatus": "Public-source research project; no additional project-wide license declared. Existing component terms and attribution remain applicable; see THIRD_PARTY.md.",
   "thirdPartyModifications": [

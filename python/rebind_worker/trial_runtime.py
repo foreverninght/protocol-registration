@@ -1,6 +1,7 @@
 import json
 import re
 
+from diagnostics import diagnostic
 from runtime import WorkerError
 from trial_session import SessionExpired, confirm_identity, confirm_response, restore, saved_tokens
 
@@ -27,14 +28,17 @@ def run(request, emit, receive, login_fn=None):
             auth = restore(tokens, proxy)
             try:
                 actual_email, account = confirm_identity(auth, expected, email)
-            except SessionExpired:
-                try:
-                    auth.close()
-                except Exception:
-                    pass
-                auth = None
-            else:
                 return probe_trial(auth, actual_email, account, emit)
+            except SessionExpired:
+                pass
+            except WorkerError as exc:
+                if exc.code != "TRIAL_PROBE_FAILED" or diagnostic(exc)["httpStatus"] != 401:
+                    raise
+            try:
+                auth.close()
+            except Exception:
+                pass
+            auth = None
         emit({"type": "stage", "stage": "login_trial"})
         try:
             if login_fn is None:
@@ -72,11 +76,11 @@ def probe_trial(auth, actual_email, account, emit):
     result = {"email": actual_email, "accountId": account, "mfaVerified": True,
               "status": "error", "campaignId": CAMPAIGN, "amountMinor": None,
               "currency": None, "billingCountry": None, "errorCode": "TRIAL_PROBE_FAILED"}
-    result["session"] = {"accessToken": auth.result.access_token,
-                         "sessionToken": auth.result.session_token}
     emit({"type": "stage", "stage": "trial_qualification"})
     try:
         probe = auth.bootstrap_chatgpt_client_and_probe_trial(strict_coupon_errors=True)
+        result["session"] = {"accessToken": auth.result.access_token,
+                             "sessionToken": auth.result.session_token}
         if not isinstance(probe, dict):
             return result
         status = probe.get("status")

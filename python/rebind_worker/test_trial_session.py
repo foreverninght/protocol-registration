@@ -170,14 +170,58 @@ class SavedSessionTests(unittest.TestCase):
         self.login.assert_called_once()
 
     def test_cached_probe_failure_never_triggers_login(self):
-        for exc in (RuntimeError("HTTP 401"), RuntimeError("HTTP 403"),
-                    RuntimeError("HTTP 429"), RuntimeError("curl: (28)")):
+        for exc in (RuntimeError("HTTP 403"), RuntimeError("HTTP 429"), RuntimeError("curl: (28)")):
             self.setUp()
             self.cached.bootstrap_chatgpt_client_and_probe_trial.side_effect = exc
             with self.assertRaises(WorkerError):
                 self.execute()
             self.login.assert_not_called()
             self.cached.close.assert_called_once()
+
+    def test_cached_probe_401_logs_in_once(self):
+        error = RuntimeError("authentication required")
+        error.status_code = 401
+        self.cached.bootstrap_chatgpt_client_and_probe_trial.side_effect = error
+        result = self.execute()
+        self.assertEqual(result["status"], "eligible")
+        self.login.assert_called_once()
+        self.cached.close.assert_called_once()
+        self.fresh.auth.close.assert_called_once()
+        self.assertEqual([event["stage"] for event in self.events],
+                         ["session_trial", "trial_qualification", "login_trial", "trial_qualification"])
+
+    def test_fresh_probe_401_never_repeats_login(self):
+        self.cached.bootstrap_chatgpt_client_and_probe_trial.side_effect = RuntimeError("HTTP 401")
+        self.fresh.auth.bootstrap_chatgpt_client_and_probe_trial.side_effect = RuntimeError("HTTP 401")
+        with self.assertRaises(WorkerError) as raised:
+            self.execute()
+        self.assertEqual(error_message(raised.exception, trial=True)["diagnostic"]["httpStatus"], 401)
+        self.login.assert_called_once()
+        self.cached.close.assert_called_once()
+        self.fresh.auth.close.assert_called_once()
+
+    def test_probe_returns_tokens_after_internal_refresh(self):
+        for reuse in (True, False):
+            self.setUp()
+            if not reuse:
+                self.request["session"] = None
+            auth = self.cached if reuse else self.fresh.auth
+            def refreshed_probe(**kwargs):
+                auth.result.access_token = "fixture-final-access-token"
+                auth.result.session_token = "fixture-final-session-token"
+                return probe_fixture()
+            auth.bootstrap_chatgpt_client_and_probe_trial.side_effect = refreshed_probe
+            result = self.execute()
+            self.assertEqual(result["session"], {"accessToken": "fixture-final-access-token",
+                                                 "sessionToken": "fixture-final-session-token"})
+            auth.close.assert_called_once()
+
+    def test_cached_probe_401_close_error_still_allows_login(self):
+        self.cached.bootstrap_chatgpt_client_and_probe_trial.side_effect = RuntimeError("HTTP 401")
+        self.cached.close.side_effect = RuntimeError("close failed")
+        self.assertEqual(self.execute()["status"], "eligible")
+        self.login.assert_called_once()
+        self.cached.close.assert_called_once()
 
     def test_invalid_session_input(self):
         for value in ([], "token", {"sessionToken": None}, {"sessionToken": "abc\r\nCookie: evil"}):
